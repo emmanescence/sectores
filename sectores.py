@@ -23,8 +23,12 @@ sector = st.selectbox("Selecciona un sector", list(sectores.keys()))
 # Obtener los tickers del sector seleccionado
 tickers_sector = sectores.get(sector, [])
 
-# Seleccionar ticker dentro del sector o "Todos"
-ticker_seleccionado = st.selectbox("Selecciona un ticker o 'Todos'", ["Todos"] + tickers_sector)
+# Seleccionar múltiples tickers dentro del sector o "Todos"
+tickers_seleccionados = st.multiselect(
+    "Selecciona uno o más tickers o 'Todos'",
+    ["Todos"] + tickers_sector,
+    default="Todos"
+)
 
 # Seleccionar rango de fechas
 start_date = st.date_input("Fecha de inicio", value=pd.to_datetime("2023-01-01"))
@@ -32,22 +36,23 @@ end_date = st.date_input("Fecha de fin", value=pd.to_datetime("2023-12-31"))
 
 # Botón para generar el gráfico
 if st.button("Generar gráfico"):
-    # Descargar datos de precios para el ticker o tickers seleccionados
-    if ticker_seleccionado == "Todos":
+    # Si se selecciona "Todos", graficar todos los tickers del sector
+    if "Todos" in tickers_seleccionados:
         precios = yf.download(tickers_sector, start=start_date, end=end_date)['Adj Close']
     else:
-        precios = yf.download(ticker_seleccionado, start=start_date, end=end_date)['Adj Close']
+        precios = yf.download(tickers_seleccionados, start=start_date, end=end_date)['Adj Close']
 
     # Graficar la evolución de precios
     plt.figure(figsize=(14, 7))
 
-    if ticker_seleccionado == "Todos":
+    if "Todos" in tickers_seleccionados:
         for ticker in precios.columns:
             plt.plot(precios[ticker], label=ticker)
     else:
-        plt.plot(precios, label=ticker_seleccionado)
+        for ticker in tickers_seleccionados:
+            plt.plot(precios[ticker], label=ticker)
 
-    plt.title(f'Evolución de Precios en el Sector {sector} ({ticker_seleccionado})')
+    plt.title(f'Evolución de Precios en el Sector {sector}')
     plt.xlabel('Fecha')
     plt.ylabel('Precio Ajustado de Cierre')
     plt.legend()
@@ -55,3 +60,4 @@ if st.button("Generar gráfico"):
 
     # Mostrar gráfico en Streamlit
     st.pyplot(plt)
+
