@@ -5,23 +5,22 @@ import streamlit as st
 
 # Diccionario con tickers clasificados por sector
 sectores = {
-    "Agropecuario": ["CRES.BA", "SAMI.BA","MOLI.BA","MOLA.BA"],
-            
-    "Financiero": ["VALO.BA", "SUPV.BA", "GGAL.BA", "BBAR.BA", "BMA.BA", "BHIP.BA", "BPAT.BA", "BYMA.BA", "GBAN.BA"],
-
-    "Energía": ["PAMP.BA", "CEPU.BA", "EDN.BA", "TGNO4.BA", "TGSU2.BA", "TRAN.BA", "METR.BA", "LEDE.BA", "ROSE.BA", "YPFD.BA"],
-
-    "Consumo": ["AGRO.BA", "POLL.BA", "CARC.BA", "CADO.BA", "GARO.BA", "GRIM.BA"],
-
-    "Materiales y Construcción": [ "LOMA.BA", "CELU.BA", "MORI.BA", "HAVA.BA","LONG.BA", "FERR.BA", "CGPA2.BA", "BOLT.BA", "CTIO.BA", "INVJ.BA", "DYCA.BA"],
-
-    "Mineroa": ["ALUA.BA", "TXAR.BA"],
-
-    "Telecomunicaciones y Tecnología": ["CVH.BA", "TECO2.BA", "COME.BA"],
-
-    "Inmobiliario": ["IRSA.BA"],
-
-    "Industria": ["FIPL.BA", "SECO2.BA", "SEMI.BA", "GCDI.BA", "GCLA.BA", "OEST.BA"]
+    "Bienes de consumo duraderos": ["DOME.BA", "LONG.BA"],
+    "Comercio minorista": ["PATA.BA", "REGE.BA"],
+    "Comunicaciones": ["BOLT.BA", "CVH.BA", "TECO2.BA"],
+    "Consumibles perecederos": ["GRIM.BA", "HAVA.BA", "MOLI.BA"],
+    "Fabricación de productos": ["AGRO.BA", "FERR.BA", "MIRG.BA"],
+    "Finanzas": ["BBAR.BA", "BHIP.BA", "BMA.BA", "BPAT.BA", "BYMA.BA", "CADOC.BA", "CTIO.BA", "GCDI.BA", "GGAL.BA", "MTRM.BA", "SUPV.BA", "VALO.BA"],
+    "Industrias de proceso": ["CELU.BA", "CRES.BA", "INTR.BA", "LEDE.BA", "MOLA.BA", "MORI.BA", "RIGO.BA", "SAMI.BA", "SEMI.BA"],
+    "Minerales energéticos": ["YPFD.BA"],
+    "Minerales no energéticos": ["HARG.BA", "LOMA.BA", "TXAR.BA"],
+    "Servicios al consumidor": ["GCLA.BA"],
+    "Servicios de distribución": ["INVJ.BA"],
+    "Servicios industriales": ["COME.BA", "DYCA.BA", "GBAN.BA", "OEST.BA", "POLL.BA", "TGNO4.BA"],
+    "Servicios públicos": ["CAPX.BA", "CECO2.BA", "CEPU.BA", "CGPA2.BA", "DGCE.BA", "EDN.BA", "METR.BA", "PAMP.BA", "TGSU2.BA", "TRAN.BA"],
+    "Servicios tecnológicos": ["GAMIB.BA"],
+    "Tecnologías sanitarias": ["RICHL.BA", "ROSE.BA"],
+    "Transporte": ["AUSO.BA", "CARC.BA"]
 }
 
 # Configuración de la aplicación en Streamlit
