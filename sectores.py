@@ -5,13 +5,23 @@ import streamlit as st
 
 # Diccionario con tickers clasificados por sector
 sectores = {
+    "Agropecuario": ["CRES.BA", "SAMI.BA","MOLI.BA","MOLA.BA"],
+            
     "Financiero": ["VALO.BA", "SUPV.BA", "GGAL.BA", "BBAR.BA", "BMA.BA", "BHIP.BA", "BPAT.BA", "BYMA.BA", "GBAN.BA"],
+
     "Energía": ["PAMP.BA", "CEPU.BA", "EDN.BA", "TGNO4.BA", "TGSU2.BA", "TRAN.BA", "METR.BA", "LEDE.BA", "ROSE.BA", "YPFD.BA"],
-    "Consumo": ["MOLI.BA", "AGRO.BA", "POLL.BA", "CARC.BA", "CADO.BA", "GARO.BA", "GRIM.BA"],
-    "Materiales y Construcción": ["ALUA.BA", "TXAR.BA", "LOMA.BA", "CELU.BA", "MORI.BA", "HAVA.BA", "MOLA.BA", "LONG.BA", "FERR.BA", "CGPA2.BA", "BOLT.BA", "CTIO.BA", "INVJ.BA", "DYCA.BA"],
+
+    "Consumo": ["AGRO.BA", "POLL.BA", "CARC.BA", "CADO.BA", "GARO.BA", "GRIM.BA"],
+
+    "Materiales y Construcción": [ "LOMA.BA", "CELU.BA", "MORI.BA", "HAVA.BA","LONG.BA", "FERR.BA", "CGPA2.BA", "BOLT.BA", "CTIO.BA", "INVJ.BA", "DYCA.BA"],
+
+    "Mineroa": ["ALUA.BA", "TXAR.BA"],
+
     "Telecomunicaciones y Tecnología": ["CVH.BA", "TECO2.BA", "COME.BA"],
-    "Inmobiliario": ["IRSA.BA", "CRES.BA"],
-    "Industria": ["FIPL.BA", "SECO2.BA", "SEMI.BA", "SAMI.BA", "GCDI.BA", "GCLA.BA", "OEST.BA"]
+
+    "Inmobiliario": ["IRSA.BA"],
+
+    "Industria": ["FIPL.BA", "SECO2.BA", "SEMI.BA", "GCDI.BA", "GCLA.BA", "OEST.BA"]
 }
 
 # Configuración de la aplicación en Streamlit
