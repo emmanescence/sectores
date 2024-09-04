@@ -20,31 +20,38 @@ st.title('Evolución de Precios por Sector en la Bolsa Argentina')
 # Seleccionar sector
 sector = st.selectbox("Selecciona un sector", list(sectores.keys()))
 
+# Obtener los tickers del sector seleccionado
+tickers_sector = sectores.get(sector, [])
+
+# Seleccionar ticker dentro del sector o "Todos"
+ticker_seleccionado = st.selectbox("Selecciona un ticker o 'Todos'", ["Todos"] + tickers_sector)
+
 # Seleccionar rango de fechas
 start_date = st.date_input("Fecha de inicio", value=pd.to_datetime("2023-01-01"))
 end_date = st.date_input("Fecha de fin", value=pd.to_datetime("2023-12-31"))
 
 # Botón para generar el gráfico
 if st.button("Generar gráfico"):
-    # Obtener los tickers del sector seleccionado
-    tickers_sector = sectores.get(sector, [])
-
-    if not tickers_sector:
-        st.write(f"No se encontraron tickers para el sector {sector}")
-    else:
-        # Descargar datos de precios para los tickers en el sector
+    # Descargar datos de precios para el ticker o tickers seleccionados
+    if ticker_seleccionado == "Todos":
         precios = yf.download(tickers_sector, start=start_date, end=end_date)['Adj Close']
+    else:
+        precios = yf.download(ticker_seleccionado, start=start_date, end=end_date)['Adj Close']
 
-        # Graficar la evolución de precios
-        plt.figure(figsize=(14, 7))
+    # Graficar la evolución de precios
+    plt.figure(figsize=(14, 7))
+
+    if ticker_seleccionado == "Todos":
         for ticker in precios.columns:
             plt.plot(precios[ticker], label=ticker)
-        
-        plt.title(f'Evolución de Precios en el Sector {sector}')
-        plt.xlabel('Fecha')
-        plt.ylabel('Precio Ajustado de Cierre')
-        plt.legend()
-        plt.grid(True)
+    else:
+        plt.plot(precios, label=ticker_seleccionado)
 
-        # Mostrar gráfico en Streamlit
-        st.pyplot(plt)
+    plt.title(f'Evolución de Precios en el Sector {sector} ({ticker_seleccionado})')
+    plt.xlabel('Fecha')
+    plt.ylabel('Precio Ajustado de Cierre')
+    plt.legend()
+    plt.grid(True)
+
+    # Mostrar gráfico en Streamlit
+    st.pyplot(plt)
