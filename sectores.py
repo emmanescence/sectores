@@ -54,11 +54,11 @@ if st.button("Generar gráfico"):
     # Graficar la evolución de precios
     plt.figure(figsize=(14, 7))
 
-    if "Todos" in tickers_seleccionados:
-        for ticker in precios.columns:
-            plt.plot(precios[ticker], label=ticker)
+    # Verificación si es un solo ticker (Serie)
+    if isinstance(precios, pd.Series):
+        plt.plot(precios, label=tickers_seleccionados[0])
     else:
-        for ticker in tickers_seleccionados:
+        for ticker in precios.columns:
             plt.plot(precios[ticker], label=ticker)
 
     plt.title(f'Evolución de Precios en el Sector {sector}')
@@ -69,4 +69,3 @@ if st.button("Generar gráfico"):
 
     # Mostrar gráfico en Streamlit
     st.pyplot(plt)
-
